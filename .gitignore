@@ -1,0 +1,8 @@
+.config/.local
+.config/.cache
+.config/.npm
+.config/.config/configstore/update-notifier-npm.json
+.config/data/CachedExtensionVSIXs
+.config/data/logs
+.config/data/User/workspaceStorage
+.config/extensions
