@@ -1,5 +1,6 @@
 plugins {
-    java
+    kotlin("jvm") version "1.5.31"
+    kotlin("plugin.allopen") version "1.5.31"
     id("io.quarkus")
 }
 
@@ -15,6 +16,8 @@ val quarkusPlatformVersion: String by project
 dependencies {
     implementation("io.quarkus:quarkus-smallrye-openapi")
     implementation(enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}"))
+    implementation("io.quarkus:quarkus-kotlin")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-resteasy")
     testImplementation("io.quarkus:quarkus-junit5")
@@ -29,7 +32,13 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-    options.compilerArgs.add("-parameters")
+allOpen {
+    annotation("javax.ws.rs.Path")
+    annotation("javax.enterprise.context.ApplicationScoped")
+    annotation("io.quarkus.test.junit.QuarkusTest")
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
+    kotlinOptions.javaParameters = true
 }

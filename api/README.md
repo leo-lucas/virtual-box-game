@@ -47,6 +47,10 @@ You can then execute your native executable with: `./build/api-1.0.0-SNAPSHOT-ru
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
 
+## Related Guides
+
+- Kotlin ([guide](https://quarkus.io/guides/kotlin)): Write your services in Kotlin
+
 ## Provided Code
 
 ### RESTEasy JAX-RS
